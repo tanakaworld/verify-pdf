@@ -1,11 +1,13 @@
 <template>
     <div class="PDF">
-        <button @click="onClickOpenPDF">Open PDF</button>
+        <button @click="openPDF1">PDF1</button>
+        <button @click="openPDF2">PDF2</button>
     </div>
 </template>
 
 <script>
-    import pdfLight from './raw/pdf-light.txt';
+    import pdf1 from './raw/pdf-light.txt';
+    import pdf2 from './raw/pdf-heavy.txt';
 
     const generatePDFFileUrl = (base64String) => {
         const file = new Blob([atob(base64String)], {type: 'application/pdf'});
@@ -18,8 +20,11 @@
     export default {
         name: "PDF",
         methods: {
-            onClickOpenPDF() {
-                window.open(generatePDFFileUrl(pdfLight));
+            openPDF1() {
+                window.open(generatePDFFileUrl(pdf1));
+            },
+            openPDF2() {
+                window.open(generatePDFFileUrl(pdf2));
             }
         }
     };

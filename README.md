@@ -10,12 +10,9 @@ yarn install
 yarn run serve
 ```
 
-### Compiles and minifies for production
+## Convert Base64 file to String
 ```
-yarn run build
-```
-
-### Lints and fixes files
-```
-yarn run lint
+cd src/base64
+go run file64 sorucefile
+# => "sourcefile.txt" will be created 
 ```

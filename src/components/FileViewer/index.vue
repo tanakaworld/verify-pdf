@@ -6,7 +6,6 @@
         <button class="row" @click="open(generatePDFFileUrl(pdfLarge))">pdfLarge</button>
         <button class="row" @click="open(generatePDFFileUrl(pdfLargeMac))">pdfLargeMac</button>
         <button class="row" @click="open(generatePDFFileUrl(highResolution))">highResolution</button>
-        <button class="row" @click="open(generatePDFFileUrl(test))">test</button>
         <button class="row" @click="open(generatePDFFileUrl(kana))">kana</button>
         <button class="row" @click="open(generatePDFFileUrl(kanaWImg))">kanaWImg</button>
         <button class="row" @click="open(generatePDFFileUrl(kanaSingle))">kanaSingle</button>
@@ -33,7 +32,6 @@
     import pdfLarge from '../../base64/sources/pdf-large.pdf.txt';
     import pdfLargeMac from '../../base64/sources/pdf-large.pdf.mac.txt';
     import highResolution from '../../base64/sources/pdf-high-resolution.pdf.txt';
-    import test from '../../base64/sources/2018-08-28-replace-part-of-backbone-project-by-vue.pdf.txt';
     import kana from '../../base64/sources/kana.pdf.txt';
     import kanaWImg from '../../base64/sources/kana_w_img.pdf.txt';
     import kanaSingle from '../../base64/sources/kana_single.pdf.txt';
@@ -74,7 +72,6 @@
             kanaSingle: () => kanaSingle,
             enSingle: () => enSingle,
             enSingleSob: () => enSingleSob,
-            test: () => test,
             imgDog: () => imgDog,
             imgExLarge: () => imgExLarge
         },

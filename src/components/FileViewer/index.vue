@@ -40,7 +40,9 @@
                 const options = options || {scale: 1};
                 const canvasContainer = document.createElement('div');
 
-                function renderPage(page) {
+                function renderPageAsync(page) {
+                    // eslint-disable-next-line
+                    console.log('renderPageAsync');
                     const viewport = page.getViewport(options.scale);
                     const canvas = document.createElement('canvas');
                     const ctx = canvas.getContext('2d');
@@ -55,20 +57,26 @@
                     canvasContainer.appendChild(canvas);
 
                     page.render(renderContext);
+
+                    return Promise.resolve();
                 }
 
-                function renderPages(pdfDoc) {
-                    for (let num = 1; num <= pdfDoc.numPages; num++) {
-                        pdfDoc.getPage(num).then(renderPage);
-                    }
+                function renderPagesAsync(pdfDoc) {
+                    const pageNumbersArray = [...Array(pdfDoc.numPages).keys()].map(n => n + 1);
+
+                    return pageNumbersArray.reduce((promise, num) => {
+                        return promise.then(() => pdfDoc.getPage(num)).then(renderPageAsync);
+                    }, Promise.resolve());
                 }
 
                 PDFJS.disableWorker = true;
                 PDFJS.getDocument({data: atob(base64Str)})
-                    .then(renderPages)
+                    .then(pdfDoc => renderPagesAsync(pdfDoc))
                     .then(() => this.openNewTabWith(canvasContainer));
             },
             openNewTabWith(content) {
+                // eslint-disable-next-line
+                console.log('openNewTabWith');
                 const win = window.open("");
                 win.document.body.appendChild(content);
             }

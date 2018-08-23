@@ -1,7 +1,7 @@
 <template>
     <div class="PDF">
-        <button class="row" @click="openPDFInCurrentPage(pdfSmall)">Open PDF Small</button>
-        <button class="row" @click="openPDFInCurrentPage(pdfLarge)">Open PDF Large</button>
+        <button class="row" @click="openPDFInNewTab(pdfSmall)">Open PDF Small</button>
+        <button class="row" @click="openPDFInNewTab(pdfLarge)">Open PDF Large</button>
         <button class="row" @click="openImgInNewTab(imgDog)">Open imgDog</button>
         <button class="row" @click="openImgInNewTab(imgExLarge)">Open imgExLarge</button>
 
@@ -36,7 +36,7 @@
 
                 this.openNewTabWith(image);
             },
-            openPDFInCurrentPage(base64Str) {
+            openPDFInNewTab(base64Str) {
                 const options = options || {scale: 1};
                 const canvasContainer = document.createElement('div');
 

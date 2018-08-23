@@ -72,7 +72,11 @@
                 PDFJS.disableWorker = true;
                 PDFJS.getDocument({data: atob(base64Str)})
                     .then(pdfDoc => renderPagesAsync(pdfDoc))
-                    .then(() => this.openNewTabWith(canvasContainer));
+                    .then(() => {
+                        setTimeout(() => {
+                            this.openNewTabWith(canvasContainer);
+                        }, 1000);
+                    });
             },
             openNewTabWith(content) {
                 // eslint-disable-next-line

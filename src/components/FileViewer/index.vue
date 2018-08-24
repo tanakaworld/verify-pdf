@@ -56,9 +56,7 @@
                     canvas.style.display = 'block';
                     canvasContainer.appendChild(canvas);
 
-                    page.render(renderContext);
-
-                    return Promise.resolve();
+                    return page.render(renderContext);
                 }
 
                 function renderPagesAsync(pdfDoc) {
@@ -72,11 +70,7 @@
                 PDFJS.disableWorker = true;
                 PDFJS.getDocument({data: atob(base64Str)})
                     .then(pdfDoc => renderPagesAsync(pdfDoc))
-                    .then(() => {
-                        setTimeout(() => {
-                            this.openNewTabWith(canvasContainer);
-                        }, 1000);
-                    });
+                    .then(() => this.openNewTabWith(canvasContainer));
             },
             openNewTabWith(content) {
                 // eslint-disable-next-line
